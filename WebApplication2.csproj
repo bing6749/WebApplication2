@@ -103,6 +103,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="classAlbum.aspx" />
+    <Content Include="classDiary.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -124,6 +126,21 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Images\class1.jpg" />
+    <Content Include="Content\Images\class2.jpg" />
+    <Content Include="Content\Images\class3.jpg" />
+    <Content Include="Content\Images\class4.jpg" />
+    <Content Include="Content\Images\class5.jpg" />
+    <Content Include="Content\Images\class6.jpg" />
+    <Content Include="Content\Images\cont-bg.gif" />
+    <Content Include="Content\Images\divider.gif" />
+    <Content Include="Content\Images\header-bg.jpg" />
+    <Content Include="Content\Images\icon.gif" />
+    <Content Include="Content\Images\logo.gif" />
+    <Content Include="Content\Images\work1.jpg" />
+    <Content Include="Content\Images\work2.jpg" />
+    <Content Include="Content\Images\work3.jpg" />
+    <Content Include="Content\Images\work4.jpg" />
     <Content Include="NavBar.ascx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -196,6 +213,20 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="classAlbum.aspx.cs">
+      <DependentUpon>classAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="classAlbum.aspx.designer.cs">
+      <DependentUpon>classAlbum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="classDiary.aspx.cs">
+      <DependentUpon>classDiary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="classDiary.aspx.designer.cs">
+      <DependentUpon>classDiary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

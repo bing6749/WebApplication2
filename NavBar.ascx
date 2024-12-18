@@ -49,7 +49,7 @@
         </li>
         <li class="nav-item">
             <span class="nav-dot"></span>
-            <asp:HyperLink runat="server" NavigateUrl="~/ClassPhotos" CssClass="nav-link">班级相册</asp:HyperLink>
+            <asp:HyperLink runat="server" NavigateUrl="~/classAlbum" CssClass="nav-link">班级相册</asp:HyperLink>
         </li>
         <li class="nav-item">
             <span class="nav-dot"></span>

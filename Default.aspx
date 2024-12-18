@@ -104,7 +104,7 @@
                         <ul id="listItem">
                             <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
                             <div class="more">
-                                <asp:HyperLink runat="server" NavigateUrl="~/MessageBoard.aspx">更多...</asp:HyperLink>
+                                <asp:HyperLink runat="server" NavigateUrl="~/classDiary.aspx">更多...</asp:HyperLink>
                             </div>
                         </ul>
                     </LayoutTemplate>
