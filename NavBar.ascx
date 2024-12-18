@@ -53,7 +53,7 @@
         </li>
         <li class="nav-item">
             <span class="nav-dot"></span>
-            <asp:HyperLink runat="server" NavigateUrl="~/StudentWorks" CssClass="nav-link">同学作品</asp:HyperLink>
+            <asp:HyperLink runat="server" NavigateUrl="~/ClassWorks" CssClass="nav-link">同学作品</asp:HyperLink>
         </li>
         <li class="nav-item">
             <span class="nav-dot"></span>
