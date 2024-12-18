@@ -57,7 +57,7 @@
         </li>
         <li class="nav-item">
             <span class="nav-dot"></span>
-            <asp:HyperLink runat="server" NavigateUrl="~/MessageBoard" CssClass="nav-link">留言板</asp:HyperLink>
+            <asp:HyperLink runat="server" NavigateUrl="~/Message" CssClass="nav-link">留言板</asp:HyperLink>
         </li>
         <li class="nav-item">
             <span class="nav-dot"></span>
