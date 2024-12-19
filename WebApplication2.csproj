@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="aboutUs.aspx" />
+    <Content Include="Announcement.aspx" />
     <Content Include="classAlbum.aspx" />
     <Content Include="classDiary.aspx" />
     <Content Include="ClassWorks.aspx" />
@@ -143,6 +144,7 @@
     <Content Include="Content\Images\work2.jpg" />
     <Content Include="Content\Images\work3.jpg" />
     <Content Include="Content\Images\work4.jpg" />
+    <Content Include="login.aspx" />
     <Content Include="message.aspx" />
     <Content Include="NavBar.ascx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -215,6 +217,13 @@
     <Compile Include="aboutUs.aspx.designer.cs">
       <DependentUpon>aboutUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Announcement.aspx.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Announcement.aspx.designer.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -261,6 +270,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="message.aspx.cs">
       <DependentUpon>message.aspx</DependentUpon>

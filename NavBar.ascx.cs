@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Security;
 using System.Web.UI;
 
 namespace WebApplication2.UserControls
@@ -7,7 +8,12 @@ namespace WebApplication2.UserControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // 可以在这里添加额外的逻辑
+        }
+
+        protected void lnkLogout_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("~/Login.aspx");
         }
     }
 }

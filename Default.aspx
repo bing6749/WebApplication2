@@ -99,7 +99,7 @@
             </div>
             <div class="announcements-section">
                 <h1>最新公告</h1>
-                <asp:ListView ID="lvAnnouncements" runat="server">
+                <asp:ListView ID="lvAnnouncements" runat="server" OnItemCommand="lvAnnouncements_ItemCommand">
                     <LayoutTemplate>
                         <ul id="listItem">
                             <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
@@ -118,9 +118,28 @@
                                             (<%# ((DateTime)Eval("SubmitTime")).ToString("yyyy-MM-dd") %>)
                                     </small>
                             </asp:HyperLink>
+                            <asp:Panel ID="pnlAdminControls" runat="server" Visible='<%# IsAdmin %>'>
+                                <asp:LinkButton ID="btnDelete" runat="server" 
+                                    CommandName="Delete" 
+                                    CommandArgument='<%# Eval("AnnouncementID") %>'
+                                    OnClientClick="return confirm('确定要删除这条公告吗？');"
+                                    CssClass="delete-btn">
+                                    删除
+                                </asp:LinkButton>
+                            </asp:Panel>
                         </li>
                     </ItemTemplate>
                 </asp:ListView>
             </div>
+            <asp:Panel ID="pnlAdminControls" runat="server" Visible="false" style="margin: 10px 0;">
+                <div style="text-align: right;">
+                    <asp:HyperLink runat="server" NavigateUrl="~/Announcement.aspx" 
+                          CssClass="btn btn-primary" style="padding: 5px 15px; 
+                          background-color: #90EE90; color: white; text-decoration: none; 
+                          border-radius: 4px;">
+                        发布新公告
+                    </asp:HyperLink>
+                </div>
+            </asp:Panel>
         </div>
     </asp:Content>

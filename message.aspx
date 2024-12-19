@@ -13,6 +13,41 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .message-list {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .message-item:last-child {
+            border-bottom: none;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .message-content {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .message-time {
+            color: #999;
+            font-size: 12px;
         }
 
         .form-group {
@@ -97,6 +132,26 @@
                 <asp:Button ID="btnSubmit" runat="server" Text="提交" CssClass="btn btn-submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="btnCancel" runat="server" Text="取消" CssClass="btn btn-cancel" OnClientClick="return confirm('确定要取消吗？');" />
             </div>
+        </div>
+
+        <div class="message-list">
+            <h3 style="margin-bottom: 20px; color: #333;">最近留言</h3>
+            <asp:Repeater ID="rptMessages" runat="server">
+                <ItemTemplate>
+                    <div class="message-item">
+                        <div class="message-header">
+                            <span><%# Eval("Name") %></span>
+                            <span><%# Eval("Email") %></span>
+                        </div>
+                        <div class="message-content">
+                            <%# Eval("MessageContent") %>
+                        </div>
+                        <div class="message-time">
+                            <%# Eval("SubmitTime", "{0:yyyy-MM-dd HH:mm:ss}") %>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
 </asp:Content>

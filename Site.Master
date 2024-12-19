@@ -72,7 +72,7 @@
             <div id="header">
                 <uc1:NavBar runat="server" ID="NavBar" />
                 <div class="logo">
-                    <asp:Image ID="imgLogo" runat="server" ImageUrl="~/Images/monitor.png" AlternateText="Logo" />
+                    <asp:Image ID="imgLogo" runat="server" ImageUrl="Images/monitor.png" AlternateText="Logo" />
                 </div>
             </div>
             

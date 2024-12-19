@@ -20,7 +20,7 @@ namespace WebApplication2
         {
             var photos = new List<PhotoItem>
             {
-                new PhotoItem { ImageUrl = ResolveUrl("~/Content/Images/class1.jpg"), Title = "春游活动" },
+                new PhotoItem { ImageUrl = ResolveUrl("Images/class1.jpg"), Title = "春游活动" },
                 new PhotoItem { ImageUrl = ResolveUrl("~/Content/Images/class2.jpg"), Title = "运动会合影" },
                 new PhotoItem { ImageUrl = ResolveUrl("~/Content/Images/class3.jpg"), Title = "课堂学习" },
                 new PhotoItem { ImageUrl = ResolveUrl("~/Content/Images/class4.jpg"), Title = "元旦晚会" },

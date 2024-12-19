@@ -10,17 +10,60 @@ namespace WebApplication2
 {
     public partial class _Default : Page
     {
+
+
         protected ListView lvAnnouncements;
+        protected Panel pnlAdminControls;
+        protected Panel pnlNoAccess;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadMessages();
+                LoadAnnouncements();
+                CheckUserAccess();
             }
         }
 
-        private void LoadMessages()
+        private void CheckUserAccess()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string connString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    string query = "SELECT Role FROM Users WHERE Username = @Username";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", User.Identity.Name);
+                        try
+                        {
+                            conn.Open();
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result.ToString() == "admin")
+                            {
+                                pnlAdminControls.Visible = true;
+                            }
+                            else
+                            {
+                                pnlAdminControls.Visible = false;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            pnlAdminControls.Visible = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                pnlAdminControls.Visible = false;
+            }
+        }
+
+        private void LoadAnnouncements()
         {
             string connString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             List<Announcement> announcements = new List<Announcement>();
@@ -30,10 +73,10 @@ namespace WebApplication2
                 try
                 {
                     conn.Open();
-                    string query = @"SELECT TOP 4 MessageID, Name, MessageContent, SubmitTime 
-                                   FROM MessageBoard 
-                                   ORDER BY SubmitTime DESC";
-                    
+                    string query = @"SELECT TOP 4 AnnouncementID, Content, CreateTime 
+                                   FROM Announcements 
+                                   ORDER BY CreateTime DESC";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -42,10 +85,11 @@ namespace WebApplication2
                             {
                                 announcements.Add(new Announcement
                                 {
-                                    Title = reader["MessageContent"].ToString(),
-                                    Url = $"~/MessageBoard.aspx?id={reader["MessageID"]}",
-                                    SubmitTime = Convert.ToDateTime(reader["SubmitTime"]),
-                                    Author = reader["Name"].ToString()
+                                    AnnouncementID = Convert.ToInt32(reader["AnnouncementID"]),
+                                    Title = reader["Content"].ToString(),
+                                    Url = $"~/Announcement.aspx?id={reader["AnnouncementID"]}",
+                                    SubmitTime = Convert.ToDateTime(reader["CreateTime"]),
+                                    Author = "班级管理员"
                                 });
                             }
                         }
@@ -60,10 +104,70 @@ namespace WebApplication2
                 }
             }
         }
+
+        public bool IsAdmin
+        {
+            get
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    string connString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+                    using (SqlConnection conn = new SqlConnection(connString))
+                    {
+                        string query = "SELECT Role FROM Users WHERE Username = @Username";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@Username", User.Identity.Name);
+                            try
+                            {
+                                conn.Open();
+                                object result = cmd.ExecuteScalar();
+                                return (result != null && result.ToString() == "admin");
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+
+        protected void lvAnnouncements_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Delete" && IsAdmin)
+            {
+                int announcementId = Convert.ToInt32(e.CommandArgument);
+                string connString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+                
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    string query = "DELETE FROM Announcements WHERE AnnouncementID = @AnnouncementID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@AnnouncementID", announcementId);
+                        try
+                        {
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                            // 重新加载公告列表
+                            LoadAnnouncements();
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("删除失败: " + ex.Message);
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    public class Announcement
+    public partial class Announcement
     {
+        public int AnnouncementID { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
         public DateTime SubmitTime { get; set; }
